@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- muốn thay đổi giá trị của thuộc tính
+         v-bind:thuoctinh="tenbien"
+         :thuoctinh="tenbien"
+          -->
+        <img :src="img" :alt="ghichu" style="width: 50%;">
+        <p>Họ và tên:{{ten}}</p>
+        <p>Tuổi: {{tuoi}}</p>
+        <!-- dùng v-html="tenbien" -->
+        <p v-html="rawHTML"></p>
+        <p>THực hiện phép tính đơn giản</p>
+        <p>{{count+10}}</p>
+        <p>{{ok?"Đúng":"Sai"}}</p>
+        <p>Thực hiện điều hướng 2 chiều v-model</p>
+        <!-- v-model="tenbien" dùng trong input -->
+        <!-- <input type="text" v-model="name"> -->
+        <!-- thao tác xong thì hiển thị giá trị -->
+        <!-- <input type="text" v-model.lazy="name"> -->
+        <!-- number đổi chuỗi thành số -->
+        <!-- <input type="text" v-model.number="name"> -->
+        <input type="text" v-model.trim="name">
+        <p>Hiển thị tên:{{name}}</p>
+        <p>sự kiện v-on:click="phương thức đơn giản như cộng-"</p>
+        <p>{{count}}</p>
+        <button v-on:click="count++">click me</button>
+        <!-- sự kiện phức tạp thì thực hiện ở phương thức -->
+        <button @click="dosomething()">Hiển thị</button>
+        <div @click.capture="alertHello()">
+            <!-- capture là cha làm trước, con làm sau -->
+            <!-- self ngăn chặn sự kiện cha xảy ra đặt trực tiếp ở cha -->
+            <!-- stop ngăn cha làm, nhưng đặt stop ở con -->
+            <button @click="alertWelcome()">Click here</button>
+        </div>
+        <p>Làm việc với form sẽ bị load lại</p>
+        <form action="" @submit.prevent>
+            <button type="submit">Click form</button>
+        </form>
+        <form action="" >
+            <button type="submit" @click.prevent>Click form</button>
+        </form>
+        <!-- @keyup.phim="phuongthuc" -->
+         <input type="text" @keyup.alt.enter="ptphim()">
+         <!--v-if=đk -->
+         <p v-if="instock">còn hàng</p>
+         <p v-show="instock">còn hàng</p>
+         <p v-else>Hết hàng</p>
+         <p v-if="onsale">đang sale</p>
+         <p v-show="onsale">đang sale</p>
+         <p v-else>Hết sale</p>
+         <p>Dùng v-for</p>
+         <ul>
+            <!-- d1 -->
+            <li v-for="gt in items">
+                <span>{{gt.mes}}</span>
+            </li>
+            <!-- dạng 2 -->
+            <li v-for="(gt,index) in items">
+                {{index}}-<span>{{gt.mes}}</span>
+            </li>
+            <!-- dạng 3 -->
+            <li v-for="(gt,index) in items" :key="gt.id">
+                <span>{{gt.mes}}</span>
+            </li>
+         </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="main.js"></script>
+    <!-- <script>
+        const mountedApp=app.mount("#app")
+    </script> -->
+</body>
+
+</html>
